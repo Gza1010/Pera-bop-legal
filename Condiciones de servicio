@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>pera.bot — Moderación inteligente para Discord</title>
+  <meta name="description" content="pera.bot es un bot de moderación y protección para servidores de Discord.">
+  <meta name="theme-color" content="#8bd450">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0b0f0c;
+      color: #f4f7f4;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 12, 0.88);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-content {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .pear {
+      width: 35px;
+      height: 35px;
+      border-radius: 50% 50% 45% 45%;
+      background: #9be15d;
+      position: relative;
+      transform: rotate(-8deg);
+      box-shadow: 0 0 25px rgba(155,225,93,0.25);
+    }
+
+    .pear::before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 8px;
+      background: #6aa84f;
+      border-radius: 100% 0;
+      top: -5px;
+      right: 1px;
+      transform: rotate(-20deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: #c5ccc6;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #a6e66b;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 110px 0 90px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(139,212,80,0.18), transparent 35%),
+        #0b0f0c;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid rgba(155,225,93,0.35);
+      border-radius: 999px;
+      color: #a6e66b;
+      background: rgba(155,225,93,0.06);
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(45px, 8vw, 82px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .green {
+      color: #9be15d;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: #b9c0ba;
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .button-primary {
+      background: #9be15d;
+      color: #10150e;
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .button-secondary {
+      border: 1px solid #303830;
+      background: #151b16;
+      color: #e9eee9;
+    }
+
+    .button-secondary:hover {
+      background: #1c241d;
+    }
+
+    /* FEATURES */
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #9da69e;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 27px;
+      background: #121813;
+      border: 1px solid #252d26;
+      border-radius: 16px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(155,225,93,0.4);
+    }
+
+    .icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #9da69e;
+      font-size: 15px;
+    }
+
+    /* LEGAL */
+
+    .legal {
+      background: #0f140f;
+    }
+
+    .legal-box {
+      background: #121813;
+      border: 1px solid #252d26;
+      border-radius: 16px;
+      padding: 35px;
+      margin-bottom: 25px;
+    }
+
+    .legal-box h3 {
+      color: #a6e66b;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .legal-box h4 {
+      margin-top: 22px;
+      margin-bottom: 7px;
+    }
+
+    .legal-box p,
+    .legal-box li {
+      color: #b2bbb3;
+      font-size: 15px;
+    }
+
+    .legal-box ul {
+      padding-left: 22px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 18px;
+      background: linear-gradient(
+        135deg,
+        rgba(155,225,93,0.12),
+        rgba(155,225,93,0.03)
+      );
+      border: 1px solid rgba(155,225,93,0.2);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid #222922;
+      text-align: center;
+      color: #737b74;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 750px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 80px 0 65px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .legal-box {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="container nav-content">
+
+      <a href="#inicio" class="logo">
+        <span class="pear"></span>
+        pera.bot
+      </a>
+
+      <div class="nav-links">
+        <a href="#funciones">Funciones</a>
+        <a href="#terminos">Condiciones</a>
+        <a href="#privacidad">Privacidad</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero" id="inicio">
+
+    <div class="container">
+
+      <span class="badge">
+        🍐 Moderación para Discord
+      </span>
+
+      <h1>
+        Tu servidor.<br>
+        <span class="green">Más protegido.</span>
+      </h1>
+
+      <p>
+        pera.bot ayuda a los administradores de Discord a mantener
+        sus comunidades organizadas, seguras y libres de spam mediante
+        herramientas de moderación automatizada.
+      </p>
+
+      <div class="buttons">
+
+        <!-- REEMPLAZAR POR EL ENLACE REAL DE INVITACIÓN -->
+
+        <a
+          class="button button-primary"
+          href="CAMBIAR_ESTO_POR_EL_ENLACE_DE_INVITACION"
+          target="_blank"
+          rel="noopener"
+        >
+          Añadir pera.bot
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#funciones"
+        >
+          Ver funciones
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- FEATURES -->
+
+  <section id="funciones">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Todo lo necesario</h2>
+        <p>Herramientas diseñadas para facilitar la administración.</p>
+      </div>
+
+      <div class="features">
+
+        <div class="card">
+          <div class="icon">🛡️</div>
+          <h3>Moderación automática</h3>
+          <p>
+            Detecta determinados comportamientos y aplica acciones
+            de moderación configuradas por los administradores.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🚫</div>
+          <h3>Anti-spam</h3>
+          <p>
+            Ayuda a detectar mensajes repetidos, exceso de mensajes
+            y spam de menciones.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔗</div>
+          <h3>Control de enlaces</h3>
+          <p>
+            Permite controlar determinados enlaces y configurar
+            excepciones para sitios permitidos.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📋</div>
+          <h3>Registros</h3>
+          <p>
+            Registra acciones importantes de moderación para facilitar
+            la administración del servidor.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⚙️</div>
+          <h3>Configuración</h3>
+          <p>
+            Configura diferentes módulos y adapta pera.bot a las
+            necesidades de cada comunidad.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Comandos rápidos</h3>
+          <p>
+            Utiliza comandos slash para realizar acciones de
+            administración de forma sencilla.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TERMS -->
+
+  <section class="legal" id="terminos">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Condiciones de Servicio</h2>
+        <p>Reglas para utilizar pera.bot.</p>
+      </div>
+
+      <div class="legal-box">
+
+        <h3>1. Uso del servicio</h3>
+
+        <p>
+          pera.bot proporciona herramientas de automatización y
+          moderación para servidores de Discord. Al añadir o utilizar
+          pera.bot, el administrador del servidor acepta utilizar el
+          servicio de forma responsable y conforme a las normas
+          aplicables de Discord y la legislación correspondiente.
+        </p>
+
+        <h4>2. Responsabilidad del administrador</h4>
+
+        <p>
+          Los administradores son responsables de configurar correctamente
+          el bot, revisar sus permisos y supervisar las acciones de
+          moderación realizadas automáticamente.
+        </p>
+
+        <h4>3. Moderación automática</h4>
+
+        <p>
+          Ningún sistema automático es perfecto. pera.bot puede producir
+          falsos positivos, falsos negativos o aplicar una acción incorrecta.
+          El bot no sustituye la supervisión humana.
+        </p>
+
+        <h4>4. Uso prohibido</h4>
+
+        <ul>
+          <li>Utilizar el servicio para actividades ilegales.</li>
+          <li>Realizar ataques contra otros sistemas.</li>
+          <li>Distribuir malware.</li>
+          <li>Robar cuentas o credenciales.</li>
+          <li>Utilizar el bot para actividades maliciosas.</li>
+          <li>Infringir las normas de Discord.</li>
+        </ul>
+
+        <h4>5. Disponibilidad</h4>
+
+        <p>
+          Intentamos mantener pera.bot disponible, pero no garantizamos
+          una disponibilidad del 100 %. Pueden producirse interrupciones
+          por mantenimiento, errores técnicos, problemas de infraestructura,
+          cambios de Discord u otras circunstancias.
+        </p>
+
+        <h4>6. Cambios</h4>
+
+        <p>
+          Las funciones del servicio pueden cambiar, actualizarse,
+          suspenderse o eliminarse cuando sea necesario.
+        </p>
+
+        <h4>7. Contacto</h4>
+
+        <p>
+          Para consultas relacionadas con el servicio:
+          <strong>CAMBIAR_ESTO_POR_TU_EMAIL</strong>
+        </p>
+
+        <p style="margin-top:25px;">
+          <strong>Última actualización:</strong> 5 de septiembre de 2026
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRIVACY -->
+
+  <section id="privacidad">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Política de Privacidad</h2>
+        <p>Información sobre el tratamiento de datos.</p>
+      </div>
+
+      <div class="legal-box">
+
+        <h3>1. Información que puede procesarse</h3>
+
+        <p>
+          Para proporcionar determinadas funciones, pera.bot puede
+          procesar información técnica proporcionada por Discord,
+          como identificadores de servidores, usuarios, canales
+          y mensajes cuando sea necesario para las funciones de
+          moderación.
+        </p>
+
+        <h4>2. Finalidad</h4>
+
+        <p>
+          La información puede utilizarse para ejecutar funciones
+          de moderación, mantener el servicio, detectar abusos,
+          solucionar errores y mejorar la seguridad.
+        </p>
+
+        <h4>3. No venta de datos</h4>
+
+        <p>
+          No se pretende vender información personal de los usuarios
+          a terceros.
+        </p>
+
+        <h4>4. Seguridad</h4>
+
+        <p>
+          Se aplican medidas razonables para proteger la información
+          procesada por el servicio. Sin embargo, ningún sistema
+          conectado a Internet puede garantizar seguridad absoluta.
+        </p>
+
+        <h4>5. Servicios externos</h4>
+
+        <p>
+          pera.bot depende de servicios externos, incluyendo Discord
+          y proveedores de infraestructura. Dichos servicios pueden
+          tener sus propias políticas de privacidad y condiciones.
+        </p>
+
+        <h4>6. Contacto</h4>
+
+        <p>
+          Para consultas relacionadas con privacidad:
+          <strong>CAMBIAR_ESTO_POR_TU_EMAIL</strong>
+        </p>
+
+        <p style="margin-top:25px;">
+          <strong>Última actualización:</strong> 5 de septiembre de 2026
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contacto">
+
+    <div class="container">
+
+      <div class="contact-box">
+
+        <h2>¿Necesitas ayuda?</h2>
+
+        <p style="color:#aeb6af; margin:15px 0 25px;">
+          Si tienes problemas con pera.bot o necesitas asistencia,
+          puedes contactarnos mediante nuestro canal oficial.
+        </p>
+
+        <div class="buttons">
+
+          <!-- REEMPLAZAR POR TU SERVIDOR O EMAIL -->
+
+          <a
+            class="button button-primary"
+            href="CAMBIAR_ESTO_POR_TU_SERVIDOR_DE_SOPORTE"
+            target="_blank"
+            rel="noopener"
+          >
+            Servidor de soporte
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="mailto:CAMBIAR_ESTO_POR_TU_EMAIL"
+          >
+            Contactar por email
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <p>
+        © 2026 pera.bot — Todos los derechos reservados.
+      </p>
+
+      <p style="margin-top:8px;">
+        pera.bot es un servicio independiente y no está afiliado
+        oficialmente a Discord.
+      </p>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
