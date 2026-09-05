@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>pera.bot — Política de Privacidad</title>
+  <meta name="description" content="Política de Privacidad de pera.bot.">
+  <meta name="theme-color" content="#8bd450">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      background: #0b0f0c;
+      color: #f4f7f4;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #a6e66b;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: auto;
+    }
+
+    /* NAV */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 12, 0.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-content {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .pear {
+      width: 35px;
+      height: 35px;
+      border-radius: 50% 50% 45% 45%;
+      background: #9be15d;
+      position: relative;
+      transform: rotate(-8deg);
+      box-shadow: 0 0 25px rgba(155,225,93,0.25);
+    }
+
+    .pear::before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 8px;
+      background: #6aa84f;
+      border-radius: 100% 0;
+      top: -5px;
+      right: 1px;
+      transform: rotate(-20deg);
+    }
+
+    .back {
+      font-size: 14px;
+      color: #b8c0b9;
+    }
+
+    /* HEADER */
+
+    header {
+      padding: 90px 0 55px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 50% 10%,
+          rgba(139,212,80,0.16),
+          transparent 40%
+        );
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(155,225,93,0.07);
+      border: 1px solid rgba(155,225,93,0.3);
+      color: #a6e66b;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #9da69e;
+    }
+
+    /* CONTENT */
+
+    main {
+      padding-bottom: 90px;
+    }
+
+    .policy {
+      background: #121813;
+      border: 1px solid #252d26;
+      border-radius: 18px;
+      padding: 40px;
+    }
+
+    .policy h2 {
+      font-size: 25px;
+      margin-top: 35px;
+      margin-bottom: 12px;
+      color: #a6e66b;
+    }
+
+    .policy h2:first-child {
+      margin-top: 0;
+    }
+
+    .policy h3 {
+      font-size: 18px;
+      margin-top: 23px;
+      margin-bottom: 8px;
+    }
+
+    .policy p {
+      color: #b4bdb5;
+      margin-bottom: 13px;
+    }
+
+    .policy ul {
+      margin: 10px 0 15px 25px;
+      color: #b4bdb5;
+    }
+
+    .policy li {
+      margin-bottom: 7px;
+    }
+
+    .notice {
+      margin: 25px 0;
+      padding: 18px;
+      border-left: 3px solid #9be15d;
+      background: rgba(155,225,93,0.06);
+      border-radius: 8px;
+      color: #cbd3cc;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      text-align: center;
+      border-top: 1px solid #222922;
+      color: #737b74;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+
+      .policy {
+        padding: 25px;
+      }
+
+      header {
+        padding: 70px 0 40px;
+      }
+
+      .back {
+        display: none;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+
+    <div class="container nav-content">
+
+      <a href="index.html" class="logo">
+        <span class="pear"></span>
+        pera.bot
+      </a>
+
+      <a href="index.html" class="back">
+        ← Volver al inicio
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="container">
+
+      <span class="badge">
+        🔒 Privacidad
+      </span>
+
+      <h1>
+        Política de <span style="color:#9be15d;">Privacidad</span>
+      </h1>
+
+      <p>
+        Información sobre cómo pera.bot procesa y protege los datos
+        necesarios para proporcionar sus servicios.
+      </p>
+
+    </div>
+
+  </header>
+
+
+  <!-- POLICY -->
+
+  <main>
+
+    <div class="container">
+
+      <article class="policy">
+
+        <h2>1. Introducción</h2>
+
+        <p>
+          Esta Política de Privacidad explica cómo pera.bot procesa
+          información cuando se utiliza el bot en servidores de Discord.
+        </p>
+
+        <p>
+          Al utilizar pera.bot, aceptas que determinada información
+          pueda ser procesada cuando sea necesaria para proporcionar
+          las funciones del servicio.
+        </p>
+
+
+        <h2>2. Información que podemos procesar</h2>
+
+        <p>
+          Dependiendo de las funciones utilizadas y de la configuración
+          del servidor, pera.bot puede procesar diferentes tipos de
+          información.
+        </p>
+
+        <h3>Información de servidores</h3>
+
+        <ul>
+          <li>ID del servidor.</li>
+          <li>Nombre del servidor cuando sea necesario.</li>
+          <li>Configuraciones relacionadas con pera.bot.</li>
+          <li>ID de canales utilizados por el bot.</li>
+          <li>Configuraciones de moderación.</li>
+        </ul>
+
+        <h3>Información de usuarios</h3>
+
+        <ul>
+          <li>ID de usuario de Discord.</li>
+          <li>Nombre o identificador necesario para mostrar registros.</li>
+          <li>Roles necesarios para comprobar permisos.</li>
+        </ul>
+
+        <h3>Mensajes</h3>
+
+        <p>
+          Algunas funciones de moderación requieren que pera.bot
+          procese temporalmente el contenido de determinados mensajes,
+          por ejemplo para detectar spam, palabras configuradas,
+          menciones excesivas o enlaces.
+        </p>
+
+        <div class="notice">
+          <strong>Importante:</strong>
+          pera.bot debe procesar el contenido necesario para poder
+          realizar determinadas funciones de moderación automática.
+        </div>
+
+
+        <h2>3. Para qué utilizamos la información</h2>
+
+        <p>
+          La información procesada puede utilizarse para:
+        </p>
+
+        <ul>
+          <li>Ejecutar las funciones de moderación.</li>
+          <li>Detectar spam y comportamientos configurados.</li>
+          <li>Aplicar acciones solicitadas por los administradores.</li>
+          <li>Registrar determinadas acciones de moderación.</li>
+          <li>Mantener y mejorar el funcionamiento del bot.</li>
+          <li>Detectar problemas técnicos.</li>
+          <li>Prevenir abusos y problemas de seguridad.</li>
+        </ul>
+
+
+        <h2>4. Almacenamiento de datos</h2>
+
+        <p>
+          La cantidad y duración del almacenamiento pueden variar
+          dependiendo de la función utilizada y de la arquitectura
+          técnica del servicio.
+        </p>
+
+        <p>
+          Cuando una información no sea necesaria para proporcionar
+          una función, procuraremos evitar conservarla durante más
+          tiempo del necesario.
+        </p>
+
+        <p>
+          Algunas configuraciones o datos temporales pueden almacenarse
+          mientras el servicio está funcionando y pueden desaparecer
+          después de un reinicio o actualización.
+        </p>
+
+
+        <h2>5. Datos que no solicitamos</h2>
+
+        <p>
+          pera.bot no necesita solicitar directamente información
+          como contraseñas de Discord, contraseñas bancarias o claves
+          privadas para funcionar.
+        </p>
+
+        <div class="notice">
+          Nunca compartas tu token de Discord, contraseña u otras
+          credenciales confidenciales con pera.bot ni con personas
+          que afirmen representar al servicio.
+        </div>
+
+
+        <h2>6. Compartición de información</h2>
+
+        <p>
+          No vendemos deliberadamente información personal de los
+          usuarios.
+        </p>
+
+        <p>
+          La información puede ser procesada por proveedores técnicos
+          necesarios para operar pera.bot, como proveedores de
+          alojamiento, infraestructura, seguridad o servicios técnicos.
+        </p>
+
+        <p>
+          Dichos proveedores pueden estar sujetos a sus propias
+          condiciones y políticas de privacidad.
+        </p>
+
+
+        <h2>7. Discord</h2>
+
+        <p>
+          pera.bot funciona mediante servicios y APIs proporcionados
+          por Discord.
+        </p>
+
+        <p>
+          El uso de Discord está sujeto a las condiciones y políticas
+          de privacidad de Discord.
+        </p>
+
+        <p>
+          pera.bot es un servicio independiente y no está afiliado,
+          patrocinado ni respaldado oficialmente por Discord.
+        </p>
+
+
+        <h2>8. Seguridad</h2>
+
+        <p>
+          Procuramos aplicar medidas razonables para proteger la
+          información procesada por pera.bot.
+        </p>
+
+        <p>
+          Sin embargo, ningún sistema conectado a Internet puede
+          garantizar una seguridad absoluta.
+        </p>
+
+
+        <h2>9. Eliminación de datos</h2>
+
+        <p>
+          Si deseas solicitar la eliminación de información relacionada
+          con tu servidor o usuario, puedes contactar con nosotros.
+        </p>
+
+        <p>
+          Las solicitudes pueden estar sujetas a verificaciones para
+          evitar que una persona no autorizada solicite la eliminación
+          de información de otra persona o servidor.
+        </p>
+
+        <h2>10. Derechos de los usuarios</h2>
+
+        <p>
+          Dependiendo de la legislación aplicable, los usuarios pueden
+          tener derechos relacionados con sus datos personales, como
+          solicitar acceso, corrección o eliminación de determinada
+          información.
+        </p>
+
+        <p>
+          Las solicitudes serán evaluadas de acuerdo con la legislación
+          aplicable y con las limitaciones técnicas y legales
+          correspondientes.
+        </p>
+
+
+        <h2>11. Menores de edad</h2>
+
+        <p>
+          pera.bot no está diseñado para recopilar deliberadamente
+          información personal de menores de edad fuera de lo necesario
+          para proporcionar el servicio de Discord.
+        </p>
+
+        <p>
+          Si la legislación aplicable exige autorización de un padre,
+          madre o tutor para determinados usos, dicha autorización
+          deberá obtenerse cuando corresponda.
+        </p>
+
+
+        <h2>12. Cambios en esta política</h2>
+
+        <p>
+          Esta Política de Privacidad puede actualizarse cuando
+          cambien las funciones, la infraestructura o los requisitos
+          legales del servicio.
+        </p>
+
+        <p>
+          La fecha de actualización indicada al final de esta página
+          será modificada cuando se publique una nueva versión.
+        </p>
+
+
+        <h2>13. Contacto</h2>
+
+        <p>
+          Para consultas relacionadas con privacidad o solicitudes
+          relacionadas con datos:
+        </p>
+
+        <p>
+          <strong>Correo:</strong>
+          <a href="mailto:CAMBIAR_ESTO_POR_TU_EMAIL">
+            CAMBIAR_ESTO_POR_TU_EMAIL
+          </a>
+        </p>
+
+        <p>
+          <strong>Servidor de soporte:</strong>
+          <a
+            href="CAMBIAR_ESTO_POR_TU_SERVIDOR"
+            target="_blank"
+            rel="noopener"
+          >
+            Soporte de pera.bot
+          </a>
+        </p>
+
+
+        <h2>14. Fecha de actualización</h2>
+
+        <p>
+          <strong>Última actualización:</strong>
+          5 de septiembre de 2026
+        </p>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <p>
+        © 2026 pera.bot — Todos los derechos reservados.
+      </p>
+
+      <p style="margin-top:8px;">
+        pera.bot es un servicio independiente y no está afiliado
+        oficialmente a Discord.
+      </p>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
